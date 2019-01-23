@@ -1,7 +1,12 @@
 services:
     typograph:
+        alias: TypographBundle\Service\TypographService
+        public: true
+
+    TypographBundle\Service\TypographService:
         class:     TypographBundle\Service\TypographService
         arguments: [ "%typograph.configs%" ]
+        public: true
 
     twig.extension.typograph:
         class:     TypographBundle\Twig\TypographTwigExtension
