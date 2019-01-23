@@ -6,12 +6,12 @@ The typograph bundle for Symfony based on [E. Muravjev's Typograph](http://mdash
 
 ## Installation
 
-Add it-blaster/typograph-bundle to your `composer.json` file and run `composer`
+Add meniam/typograph-bundle to your `composer.json` file and run `composer`
 
 ```json
 ...
 "require": {
-    "it-blaster/typograph-bundle": "1.0.*"
+    "meniam/typograph-bundle": "1.0.*"
 }
 ...
 ```
@@ -37,7 +37,7 @@ The bundle contains a TwigExtension which can be used in your templates:
 The bundle allows you to pass options that E. Muravjev's Typograph supports. You can use a default config, redefine it:
 
 ```yml
-fenrizbes_typograph:
+typograph:
     configs:
         default:
             Text.paragraphs:           on
@@ -48,7 +48,7 @@ fenrizbes_typograph:
 or define your configs:
 
 ```yml
-fenrizbes_typograph:
+typograph:
     configs:
         default:
             Text.paragraphs:           off
