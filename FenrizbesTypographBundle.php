@@ -1,6 +1,6 @@
 <?php
 
-namespace Fenrizbes\TypographBundle;
+namespace TypographBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

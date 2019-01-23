@@ -1,8 +1,8 @@
 {
     "name": "meniam/typograph-bundle",
     "type": "symfony-bundle",
-    "description": "The typograph bundle for Symfony3 based on E. Muravjev's Typograph",
-    "keywords": ["symfony", "typograph"],
+    "description": "The typograph bundle for Symfony4 based on E. Muravjev's Typograph",
+    "keywords": ["symfony", "typograph", "symfony4"],
     "homepage": "https://github.com/meniam/typograph-bundle",
     "license": "MIT",
     "authors": [
@@ -16,9 +16,9 @@
     },
     "autoload": {
         "psr-0": { 
-            "Fenrizbes\\TypographBundle": ""
+            "TypographBundle": ""
         }
     },
     "minimum-stability": "dev",
-    "target-dir": "Fenrizbes/TypographBundle"
+    "target-dir": "TypographBundle"
 }

@@ -1,8 +1,8 @@
 <?php
 
-namespace Fenrizbes\TypographBundle\Service;
+namespace TypographBundle\Service;
 
-use Fenrizbes\TypographBundle\EMT\EMTypograph;
+use TypographBundle\EMT\EMTypograph;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 
 class TypographService

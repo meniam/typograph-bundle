@@ -7,7 +7,7 @@
 * Authors: Evgeny Muravjev & Alexander Drutsa  
 */
 
-namespace Fenrizbes\TypographBundle\EMT;
+namespace TypographBundle\EMT;
 
 /**
  * @see EMTTret
@@ -45,7 +45,7 @@ class EMTTretText extends EMTTret
 					),
 				'replacement' 	=> array(
 					'\1',
-					'$m[1].($m[7] === \Fenrizbes\TypographBundle\EMT\EMTLib::strtolower($m[3]) ? $m[2] : $m[2].$m[5].$m[6] )',
+					'$m[1].($m[7] === \TypographBundle\EMT\EMTLib::strtolower($m[3]) ? $m[2] : $m[2].$m[5].$m[6] )',
 					)
 			),			
 		'paragraphs' => array(
@@ -70,7 +70,7 @@ class EMTTretText extends EMTTret
 		$text = '<' . self::BASE64_PARAGRAPH_TAG . '>' . trim($text) . '</' . self::BASE64_PARAGRAPH_TAG . '>';
 		//$text = $this->preg_replace_e('/([\040\t]+)?(\n|\r){2,}/e', '"</" . self::BASE64_PARAGRAPH_TAG . "><" .self::BASE64_PARAGRAPH_TAG . ">"', $text);
 		//$text = $this->preg_replace_e('/([\040\t]+)?(\n){2,}/e', '"</" . self::BASE64_PARAGRAPH_TAG . "><" .self::BASE64_PARAGRAPH_TAG . ">"', $text);
-		$text = $this->preg_replace_e('/([\040\t]+)?(\n)+([\040\t]*)(\n)+/e', '$m[1]."</" . self::BASE64_PARAGRAPH_TAG . ">".\Fenrizbes\TypographBundle\EMT\EMTLib::iblock($m[2].$m[3])."<" .self::BASE64_PARAGRAPH_TAG . ">"', $text);
+		$text = $this->preg_replace_e('/([\040\t]+)?(\n)+([\040\t]*)(\n)+/e', '$m[1]."</" . self::BASE64_PARAGRAPH_TAG . ">".\TypographBundle\EMT\EMTLib::iblock($m[2].$m[3])."<" .self::BASE64_PARAGRAPH_TAG . ">"', $text);
 		//$text = $this->preg_replace_e('/([\040\t]+)?(\n)+([\040\t]*)(\n)+/e', '"</" . self::BASE64_PARAGRAPH_TAG . ">"."<" .self::BASE64_PARAGRAPH_TAG . ">"', $text);
 		//может от открвающего до закрывающего ?!
 		$text = preg_replace('/\<' . self::BASE64_PARAGRAPH_TAG . '\>('.EMTLib::INTERNAL_BLOCK_OPEN.'[a-zA-Z0-9\/=]+?'.EMTLib::INTERNAL_BLOCK_CLOSE.')?\<\/' . self::BASE64_PARAGRAPH_TAG . '\>/s', "", $text);
@@ -106,7 +106,7 @@ class EMTTretText extends EMTTret
 	 */
 	protected function build_brs()
 	{
-		$this->_text = $this->preg_replace_e('/(\<\/' . self::BASE64_PARAGRAPH_TAG . '\>)([\r\n \t]+)(\<' . self::BASE64_PARAGRAPH_TAG . '\>)/mse', '$m[1].\Fenrizbes\TypographBundle\EMT\EMTLib::iblock($m[2]).$m[3]', $this->_text);
+		$this->_text = $this->preg_replace_e('/(\<\/' . self::BASE64_PARAGRAPH_TAG . '\>)([\r\n \t]+)(\<' . self::BASE64_PARAGRAPH_TAG . '\>)/mse', '$m[1].\TypographBundle\EMT\EMTLib::iblock($m[2]).$m[3]', $this->_text);
 		
 		if (!preg_match('/\<' . self::BASE64_BREAKLINE_TAG . '\>/', $this->_text)) {
 			$this->_text = str_replace("\r\n","\n",$this->_text);

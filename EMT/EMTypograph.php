@@ -7,23 +7,23 @@
 * Authors: Evgeny Muravjev & Alexander Drutsa  
 */
 
-namespace Fenrizbes\TypographBundle\EMT;
+namespace TypographBundle\EMT;
 
 class EMTypograph extends EMTBase
 {
 	public $trets = array(
-        '\Fenrizbes\TypographBundle\EMT\EMTTretQuote',
-        '\Fenrizbes\TypographBundle\EMT\EMTTretDash',
-        '\Fenrizbes\TypographBundle\EMT\EMTTretSymbol',
-        '\Fenrizbes\TypographBundle\EMT\EMTTretPunctmark',
-        '\Fenrizbes\TypographBundle\EMT\EMTTretNumber',
-        '\Fenrizbes\TypographBundle\EMT\EMTTretSpace',
-        '\Fenrizbes\TypographBundle\EMT\EMTTretAbbr',
-        '\Fenrizbes\TypographBundle\EMT\EMTTretNobr',
-        '\Fenrizbes\TypographBundle\EMT\EMTTretDate',
-        '\Fenrizbes\TypographBundle\EMT\EMTTretOptAlign',
-        '\Fenrizbes\TypographBundle\EMT\EMTTretEtc',
-        '\Fenrizbes\TypographBundle\EMT\EMTTretText'
+        '\TypographBundle\EMT\EMTTretQuote',
+        '\TypographBundle\EMT\EMTTretDash',
+        '\TypographBundle\EMT\EMTTretSymbol',
+        '\TypographBundle\EMT\EMTTretPunctmark',
+        '\TypographBundle\EMT\EMTTretNumber',
+        '\TypographBundle\EMT\EMTTretSpace',
+        '\TypographBundle\EMT\EMTTretAbbr',
+        '\TypographBundle\EMT\EMTTretNobr',
+        '\TypographBundle\EMT\EMTTretDate',
+        '\TypographBundle\EMT\EMTTretOptAlign',
+        '\TypographBundle\EMT\EMTTretEtc',
+        '\TypographBundle\EMT\EMTTretText'
     );
 	
 	

@@ -20,7 +20,7 @@ And register the bundle in your `AppKernel.php`
 
 ```php
 ...
-new Fenrizbes\TypographBundle\FenrizbesTypographBundle(),
+new TypographBundle\FenrizbesTypographBundle(),
 ...
 ```
 

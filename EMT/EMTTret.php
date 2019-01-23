@@ -7,7 +7,7 @@
 * Authors: Evgeny Muravjev & Alexander Drutsa  
 */
 
-namespace Fenrizbes\TypographBundle\EMT;
+namespace TypographBundle\EMT;
 
 /**
  * Базовый класс для группы правил обработки текста

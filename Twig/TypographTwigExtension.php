@@ -1,8 +1,8 @@
 <?php
 
-namespace Fenrizbes\TypographBundle\Twig;
+namespace TypographBundle\Twig;
 
-use Fenrizbes\TypographBundle\Service\TypographService;
+use TypographBundle\Service\TypographService;
 
 class TypographTwigExtension extends \Twig_Extension
 {

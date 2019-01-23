@@ -1,6 +1,6 @@
 <?php
 
-namespace Fenrizbes\TypographBundle\DependencyInjection;
+namespace TypographBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -9,8 +9,14 @@ class Configuration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('fenrizbes_typograph');
+        $treeBuilder = new TreeBuilder('typograph');
+
+        if (method_exists($treeBuilder, 'getRootNode')) {
+            $rootNode = $treeBuilder->getRootNode();
+        } else {
+            // BC layer for symfony/config 4.1 and older
+            $rootNode = $treeBuilder->root('typograph');
+        }
 
         $rootNode
             ->children()

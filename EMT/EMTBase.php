@@ -7,7 +7,7 @@
 * Authors: Evgeny Muravjev & Alexander Drutsa  
 */
 
-namespace Fenrizbes\TypographBundle\EMT;
+namespace TypographBundle\EMT;
 
 /**
  * Основной класс типографа Евгения Муравьёва
@@ -205,7 +205,7 @@ class EMTBase
     {
     	if (count($this->_safe_blocks)) 
     	{
-    		$safeType = true === $way ? "\Fenrizbes\TypographBundle\EMT\EMTLib::encrypt_tag(\$m[2])" : "stripslashes(\Fenrizbes\TypographBundle\EMT\EMTLib::decrypt_tag(\$m[2]))";
+    		$safeType = true === $way ? "\TypographBundle\EMT\EMTLib::encrypt_tag(\$m[2])" : "stripslashes(\TypographBundle\EMT\EMTLib::decrypt_tag(\$m[2]))";
     		$safeblocks = true === $way ? $this->_safe_blocks : array_reverse($this->_safe_blocks);
        		foreach ($safeblocks as $block) 
        		{
