@@ -83,9 +83,9 @@ class EMTTretQuote extends EMTTret
         ),
     );
 
-    protected function inject_in($pos, $text, &$thetext)
+    protected function inject_in($pos, $text, &$theText)
     {
-        for($i=0;$i<strlen($text);$i++) $thetext[$pos+$i] = $text[$i];
+        for($i=0;$i<strlen($text);$i++) $theText[$pos+$i] = $text[$i];
     }
 
     protected function build_sub_quotations()
@@ -134,12 +134,14 @@ class EMTTretQuote extends EMTTret
                             //$k = preg_replace("/(^|[^0-9])([0-9]+)\&raquo\;/ui", '\1\2&Prime;', $k, 1, $amount);
 
                             $amount = 0;
-                            $__ax = preg_match_all("/(^|[^0-9])([0-9]+)\&raquo\;/ui", $k, $m);
+                            $__ax = preg_match_all("/(^|[^0-9])([0-9]+)&raquo;/ui", $k, $m);
                             $__ay = 0;
                             if($__ax)
                             {
-                                $k = preg_replace_callback("/(^|[^0-9])([0-9]+)\&raquo\;/ui",
-                                    create_function('$m','global $__ax,$__ay; $__ay++; if($__ay==$__ax){ return $m[1].$m[2]."&Prime;";} return $m[0];'),
+                                $k = preg_replace_callback("/(^|[^0-9])([0-9]+)&raquo;/ui",
+                                    function ($m) {
+                                        global $__ax,$__ay; $__ay++; if($__ay==$__ax){ return $m[1].$m[2]."&Prime;";} return $m[0];
+                                    },
                                     $k);
                                 $amount = 1;
                             }

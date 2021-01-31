@@ -188,7 +188,7 @@ class EMTLib
 				$ignore = implode('', $tags);
 			}
 		}
-		$text = preg_replace(array('/\<br\s*\/?>/i', '/\<\/p\>\s*\<p\>/'), array("\n","\n\n"), $text);
+		$text = preg_replace(array('/<br\s*\/?>/i', '/<\/p>\s*<p>/'), array("\n","\n\n"), $text);
 		$text = strip_tags($text, $ignore);
 		return $text;
 	}
@@ -206,9 +206,16 @@ class EMTLib
     public static function safe_tag_chars($text, $way)
     {
     	if ($way) 
-        	$text = preg_replace_callback('/(\<\/?)(.+?)(\>)/s', create_function('$m','return $m[1].( substr(trim($m[2]), 0, 1) === "a" ? "%%___"  : ""  ) . \TypographBundle\EMT\EMTLib::encrypt_tag(trim($m[2]))  . $m[3];'), $text);
+        	$text = preg_replace_callback('/(<\/?)(.+?)(>)/s',
+                function ($m) {
+                    return $m[1].( substr(trim($m[2]), 0, 1) === "a" ? "%%___"  : ""  ) . \TypographBundle\EMT\EMTLib::encrypt_tag(trim($m[2]))  . $m[3];
+                }, $text);
         else
-        	$text = preg_replace_callback('/(\<\/?)(.+?)(\>)/s', create_function('$m','return $m[1].( substr(trim($m[2]), 0, 3) === "%%___" ? \TypographBundle\EMT\EMTLib::decrypt_tag(substr(trim($m[2]), 4)) : \TypographBundle\EMT\EMTLib::decrypt_tag(trim($m[2])) ) . $m[3];'), $text);
+        	$text = preg_replace_callback('/(<\/?)(.+?)(>)/s',
+                function ($m) {
+                    return $m[1].( substr(trim($m[2]), 0, 3) === "%%___" ? \TypographBundle\EMT\EMTLib::decrypt_tag(substr(trim($m[2]), 4)) : \TypographBundle\EMT\EMTLib::decrypt_tag(trim($m[2])) ) . $m[3];
+                }
+                , $text);
         return $text;
     }
     
@@ -221,7 +228,10 @@ class EMTLib
      */
     public static function decode_internal_blocks($text)
     {
-    	$text = preg_replace_callback('/'.EMTLib::INTERNAL_BLOCK_OPEN.'([a-zA-Z0-9\/=]+?)'.EMTLib::INTERNAL_BLOCK_CLOSE.'/s', create_function('$m','return \TypographBundle\EMT\EMTLib::decrypt_tag($m[1]);'), $text);
+    	$text = preg_replace_callback('/'.EMTLib::INTERNAL_BLOCK_OPEN.'([a-zA-Z0-9\/=]+?)'.EMTLib::INTERNAL_BLOCK_CLOSE.'/s',
+            function ($m) {
+                return \TypographBundle\EMT\EMTLib::decrypt_tag($m[1]);
+            }, $text);
         return $text;
     }
     
@@ -657,14 +667,20 @@ class EMTLib
 	 */
 	public static function convert_html_entities_to_unicode(&$text)
 	{
-		$text = preg_replace_callback("/\&#([0-9]+)\;/", 
-				create_function('$m', 'return \TypographBundle\EMT\EMTLib::_getUnicodeChar(intval($m[1]));')
+		$text = preg_replace_callback("/\&#([0-9]+)\;/",
+				function ($m) {
+                    return \TypographBundle\EMT\EMTLib::_getUnicodeChar(intval($m[1]));
+                }
 				, $text);
-		$text = preg_replace_callback("/\&#x([0-9A-F]+)\;/", 
-				create_function('$m', 'return \TypographBundle\EMT\EMTLib::_getUnicodeChar(hexdec($m[1]));')
+		$text = preg_replace_callback("/\&#x([0-9A-F]+)\;/",
+				function ($m) {
+                    return \TypographBundle\EMT\EMTLib::_getUnicodeChar(hexdec($m[1]));
+                }
 				, $text);
-		$text = preg_replace_callback("/\&([a-zA-Z0-9]+)\;/", 
-				create_function('$m', '$r = \TypographBundle\EMT\EMTLib::html_char_entity_to_unicode($m[1]); return $r ? $r : $m[0];')
+		$text = preg_replace_callback("/\&([a-zA-Z0-9]+)\;/",
+				function ($m) {
+                    $r = \TypographBundle\EMT\EMTLib::html_char_entity_to_unicode($m[1]); return $r ? $r : $m[0];
+                }
 				, $text);
 	}
 	
